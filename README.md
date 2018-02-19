@@ -1,6 +1,4 @@
 # hyperapp-i18n-lab
-
-[![Greenkeeper badge](https://badges.greenkeeper.io/marcusasplund/hyperapp-i18n-lab.svg)](https://greenkeeper.io/)
 [![GitHub issues](https://img.shields.io/github/issues/marcusasplund/hyperapp-i18n-lab.svg)](https://github.com/marcusasplund/hyperapp-i18n-lab/issues)
 [![Build status](https://travis-ci.org/marcusasplund/hyperapp-i18n-lab.svg?branch=master)](https://travis-ci.org/marcusasplund/hyperapp-i18n-lab)
 [![dependencies](https://david-dm.org/marcusasplund/hyperapp-i18n-lab.svg)](https://david-dm.org/marcusasplund/hyperapp-i18n-lab)
