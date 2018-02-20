@@ -76,7 +76,7 @@ const RadioButton = (props) => (
       id={props.name}
       name='language'
       value={props.lang} />
-    {props.name}
+    {props.name} <small>{props.fetched ? 'local' : 'remote'}</small>
   </label>
 )
 
@@ -93,6 +93,7 @@ const view = (state, actions) => {
               changelang={e => actions.changeLanguage(e)}
               checked={state.language === key}
               name={state.dict[key].name}
+              fetched={Object.keys(state.dict[key]).length > 1}
               lang={key} />
           ))
       }
