@@ -7,22 +7,33 @@ import './styles/sakura.scss'
 const state = getStateFromStorage() || {
   dict: {
     en: {
-      phrase: 'Never Gonna Give You Up',
+      phrase: 'I get around',
       label: 'Select language',
-      french: 'French',
-      english: 'English',
-      norwegian: 'Norwegian'
+      name: 'English',
+      lyric: `Round round get around, I get around, yeah
+        (Get around round round I get around, ooh-ooh) I get around
+        Fom town to town (get around round round I get around)
+        I'm a real cool head (get around round round I get around)
+        I'm makin' real good bread (get around round round I get around)`
     },
     fr: {
-      phrase: `Je ne t'abandonnerai jamais`,
+      phrase: `Je me déplace`,
       label: 'Choisir la langue',
-      french: 'Français',
-      english: 'Anglais',
-      norwegian: 'Norvégien'
+      name: 'Français',
+      lyric: `Tour rond autour, je me déplace, oui
+        (Tourne autour de moi, je me déplace, ooh-ooh) Je me déplace
+        Fom ville à la ville (se déplacer autour de ronde je me déplace)
+        Je suis une vraie tête froide (contourne-toi autour de moi)
+        Je fais du bon pain (fais le tour du rond)`
+    },
+    no: {
+      name: 'Norsk'
     }
   },
   language: 'en'
 }
+
+const translate = (state, str) => state.dict[state.language][str] || str
 
 const actions = {
   addLanguage: ([key, lang]) => ({ dict }) => ({
@@ -34,7 +45,7 @@ const actions = {
   },
   changeLanguage: (e) => (state, actions) => {
     let langKey = e.target.value
-    if (state.dict[langKey]) {
+    if (Object.keys(state.dict[langKey]) > 1) {
       actions.set({
         language: langKey
       })
@@ -55,53 +66,43 @@ const actions = {
   }
 }
 
-const view = (state, actions) => (
-  <div>
-    <h2>{state.dict[state.language].phrase}</h2>
-    <form>
-      <p>{state.dict[state.language].label}</p>
-      <div>
-        <label
-          for='french'>
-          <input
-            onclick={e => actions.changeLanguage(e)}
-            checked={state.language === 'fr'}
-            type='radio'
-            id='french'
-            name='language'
-            value='fr' />
-          {state.dict[state.language].french}
-        </label>
-        <label
-          for='english'>
-          <input
-            onclick={e => actions.changeLanguage(e)}
-            checked={state.language === 'en'}
-            type='radio'
-            id='english'
-            name='language'
-            value='en' />
-          {state.dict[state.language].english}
-        </label>
-        <label
-          for='norwegian'>
-          <input
-            onclick={e => actions.changeLanguage(e)}
-            checked={state.language === 'no'}
-            type='radio'
-            id='norwegian'
-            name='language'
-            value='no' />
-          {state.dict[state.language].norwegian} (loads from remote src)
-        </label>
-      </div>
-    </form>
+const RadioButton = (props) => (
+  <label
+    for={props.name}>
+    <input
+      onclick={props.changelang}
+      checked={props.checked}
+      type='radio'
+      id={props.name}
+      name='language'
+      value={props.lang} />
+    {props.name}
+  </label>
+)
+
+const view = (state, actions) => {
+  let t = (str) => translate(state, str)
+  return (<div>
+    <h2>{t('phrase')}</h2>
+    <p>{t('label')}</p>
+    <div>
+      {
+        Object.keys(state.dict)
+          .map(key => (
+            <RadioButton
+              changelang={e => actions.changeLanguage(e)}
+              checked={state.language === key}
+              name={state.dict[key].name}
+              lang={key} />
+          ))
+      }
+    </div>
+    <p>{t('lyrics')}</p>
     <pre>
       <code>
         {JSON.stringify(state, null, 2)}
       </code>
     </pre>
-  </div>
-)
-
+  </div>)
+}
 app(state, actions, view, document.body)

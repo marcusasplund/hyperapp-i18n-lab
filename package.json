@@ -35,6 +35,7 @@
   },
   "dependencies": {
     "hyperapp": "^1.1.2",
+    "hyperapp-context": "^0.1.0",
     "unfetch": "^3.0.0"
   }
 }
