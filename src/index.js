@@ -6,11 +6,14 @@ import './styles/sakura.scss'
 
 const state = getStateFromStorage() || {
   dict: {
+    no: {
+      name: 'Norsk'
+    },
     en: {
       phrase: 'I get around',
       label: 'Select language',
       name: 'English',
-      lyric: `Round round get around, I get around, yeah
+      lyrics: `Round round get around, I get around, yeah
         (Get around round round I get around, ooh-ooh) I get around
         Fom town to town (get around round round I get around)
         I'm a real cool head (get around round round I get around)
@@ -20,14 +23,11 @@ const state = getStateFromStorage() || {
       phrase: `Je me déplace`,
       label: 'Choisir la langue',
       name: 'Français',
-      lyric: `Tour rond autour, je me déplace, oui
+      lyrics: `Tour rond autour, je me déplace, oui
         (Tourne autour de moi, je me déplace, ooh-ooh) Je me déplace
         Fom ville à la ville (se déplacer autour de ronde je me déplace)
         Je suis une vraie tête froide (contourne-toi autour de moi)
         Je fais du bon pain (fais le tour du rond)`
-    },
-    no: {
-      name: 'Norsk'
     }
   },
   language: 'en'
@@ -45,7 +45,7 @@ const actions = {
   },
   changeLanguage: (e) => (state, actions) => {
     let langKey = e.target.value
-    if (Object.keys(state.dict[langKey]) > 1) {
+    if (Object.keys(state.dict[langKey]).length > 1) {
       actions.set({
         language: langKey
       })

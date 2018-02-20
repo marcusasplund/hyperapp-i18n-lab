@@ -1,6 +1,8 @@
 {
  "no": {
-      "phrase": "Vil aldri gi deg opp",
-      "label": "Velg spr\u00e5k"
+      "name": "Norsk",
+      "phrase": "Jeg kommer meg rundt",
+      "label": "Velg spr\u00e5k",
+      "lyrics": "Rundt rundt, kom deg rundt, ja (Kom rundt rundt rundt, jeg kommer deg rundt, ooh-ooh) Jeg kommer deg rundt Fom byen til byen (kom rundt rundt jeg kommer rundt) Jeg er et veldig kult hode (kom deg rundt rundt jeg kommer rundt) Jeg er makin 'ekte godt br\u00f8d (kom deg rundt rundt jeg kommer rundt)"
     }
 }

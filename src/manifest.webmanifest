@@ -1,13 +1,13 @@
 {
   "dir": "ltr",
   "lang": "en",
-  "name": "HyperApp ToDo",
+  "name": "HyperApp i18n",
   "scope": "./",
   "display": "fullscreen",
   "start_url": "./",
-  "short_name": "ToDo",
+  "short_name": "i18n",
   "theme_color": "white",
-  "description": "simple crud todo app",
+  "description": "HyperApp i18n",
   "orientation": "portrait",
   "background_color": "white",
   "icons": [{
