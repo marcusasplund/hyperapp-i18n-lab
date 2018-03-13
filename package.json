@@ -23,7 +23,7 @@
     "node-sass": "^4.7.2",
     "parcel-bundler": "^1.5.1",
     "standard": "*",
-    "workbox-build": "^2.1.2",
+    "workbox-build": "^3.0.0",
     "workbox-cli": "^2.1.2"
   },
   "standard": {
