@@ -1,5 +1,5 @@
-import {h, app} from 'hyperapp'
-import {getStateFromStorage, storeStateInStorage} from './utils/local-storage'
+import { h, app } from 'hyperapp'
+import { getStateFromStorage, storeStateInStorage } from './utils/local-storage'
 import fetch from 'unfetch'
 import './styles/sakura.scss'
 /** @jsx h */
