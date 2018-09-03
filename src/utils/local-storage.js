@@ -4,4 +4,4 @@ const getStateFromStorage = () =>
 const storeStateInStorage = (state) =>
   window.localStorage.setItem('i18n', JSON.stringify(state))
 
-export {getStateFromStorage, storeStateInStorage}
+export { getStateFromStorage, storeStateInStorage }
