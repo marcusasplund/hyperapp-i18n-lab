@@ -11,19 +11,17 @@
     "start": "standard && parcel src/index.html -p 3000 --open",
     "build": "standard && parcel build src/index.html -d build --public-url ./ && workbox generateSW"
   },
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Marcus Asplund <marcus@greatname.se> (@marcusasplund)",
   "bugs": {
     "url": "https://github.com/marcusasplund/hyperapp-i18n-lab/issues"
   },
   "devDependencies": {
     "babel-eslint": "^9.0.0",
-    "babel-plugin-transform-h-jsx": "^1.0.0",
-    "babel-preset-env": "^1.6.1",
-    "workbox-build": "^3.0.1",
-    "workbox-cli": "^3.0.1",
-    "node-sass": "^4.8.3",
-    "parcel-bundler": "^1.7.0",
+    "workbox-build": "^3.5.0",
+    "workbox-cli": "^3.5.0",
+    "node-sass": "^4.9.3",
+    "parcel-bundler": "^1.9.7",
     "standard": "*"
   },
   "standard": {
@@ -34,8 +32,8 @@
     ]
   },
   "dependencies": {
-    "hyperapp": "^1.2.5",
+    "hyperapp": "^1.2.9",
     "hyperapp-context": "^1.0.4",
-    "unfetch": "^4.0.0"
+    "unfetch": "^4.0.1"
   }
 }

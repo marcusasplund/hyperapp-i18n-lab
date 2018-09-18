@@ -36,13 +36,17 @@ const state = getStateFromStorage() || {
 const translate = (state, str) => state.dict[state.language][str] || str
 
 const actions = {
+
   addLanguage: ([key, lang]) => ({ dict }) => ({
     dict: Object.assign({}, dict, { [key]: lang })
   }),
+
   set: x => x,
+
   storeState: () => (state, actions) => {
     storeStateInStorage(state)
   },
+
   changeLanguage: (e) => (state, actions) => {
     let langKey = e.target.value
     if (Object.keys(state.dict[langKey]).length > 1) {
