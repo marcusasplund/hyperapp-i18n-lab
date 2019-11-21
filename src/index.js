@@ -1,10 +1,12 @@
-import { h, app } from 'hyperapp'
-import { getStateFromStorage, storeStateInStorage } from './utils/local-storage'
-import fetch from 'unfetch'
-import './styles/sakura.scss'
 /** @jsx h */
+import { h, app } from 'hyperapp'
+import { targetValue } from '@hyperapp/events'
+import { Http } from 'hyperapp-fx'
+import { getStateFromStorage, storeStateInStorage } from './utils/local-storage'
+// import fetch from 'unfetch'
+import './styles/sakura.scss'
 
-const state = getStateFromStorage() || {
+const InitialState = {
   dict: {
     no: {
       name: 'Norsk'
@@ -20,7 +22,7 @@ const state = getStateFromStorage() || {
         I'm makin' real good bread (get around round round I get around)`
     },
     fr: {
-      phrase: `Je me déplace`,
+      phrase: 'Je me déplace',
       label: 'Choisir la langue',
       name: 'Français',
       lyrics: `Tour rond autour, je me déplace, oui
@@ -35,79 +37,83 @@ const state = getStateFromStorage() || {
 
 const translate = (state, str) => state.dict[state.language][str] || str
 
-const actions = {
+const AddLanguage = (state, response) => {
+  console.log(response)
+  return state
+}
+//  dict: Object.assign({}, dict, { [key]: lang })
 
-  addLanguage: ([key, lang]) => ({ dict }) => ({
-    dict: Object.assign({}, dict, { [key]: lang })
-  }),
+const FetchLanguage = (state, value) => [
+  { ...state, language: value },
+  Http({
+    url: `./${value}.json`,
+    response: 'json',
+    action: AddLanguage
+  })
+]
 
-  set: x => x,
-
-  storeState: () => (state, actions) => {
-    storeStateInStorage(state)
-  },
-
-  changeLanguage: (e) => (state, actions) => {
-    let langKey = e.target.value
-    if (Object.keys(state.dict[langKey]).length > 1) {
-      actions.set({
-        language: langKey
-      })
-      actions.storeState()
-    } else {
-      fetch(`./${langKey}.json`)
-        .then(function (response) {
-          return response.json()
-        })
-        .then(function (lang) {
-          actions.set({
-            dict: Object.assign({}, state.dict, lang),
-            language: langKey
-          })
-          actions.storeState()
-        })
+const ChangeLanguage = (state, value) => {
+  if (Object.keys(state.dict[value]).length > 1) {
+    const newState = {
+      ...state,
+      language: value
     }
+    storeStateInStorage(newState)
+    return newState
+  } else {
+    return FetchLanguage(state, value)
   }
 }
 
 const RadioButton = (props) => (
   <label
-    for={props.name}>
+    for={props.name}
+  >
     <input
-      onclick={props.changelang}
+      onClick={[ChangeLanguage, targetValue]}
       checked={props.checked}
       type='radio'
       id={props.name}
       name='language'
-      value={props.lang} />
+      value={props.lang}
+    />
     {props.name} <small>{props.fetched ? 'local' : 'remote'}</small>
   </label>
 )
 
-const view = (state, actions) => {
-  let t = (str) => translate(state, str)
-  return (<div>
-    <h2>{t('phrase')}</h2>
-    <p>{t('label')}</p>
+const View = state => {
+  const t = (str) => translate(state, str)
+  return (
     <div>
-      {
-        Object.keys(state.dict)
-          .map(key => (
-            <RadioButton
-              changelang={e => actions.changeLanguage(e)}
-              checked={state.language === key}
-              name={state.dict[key].name}
-              fetched={Object.keys(state.dict[key]).length > 1}
-              lang={key} />
-          ))
-      }
-    </div>
-    <p>{t('lyrics')}</p>
-    <pre>
-      <code>
-        {JSON.stringify(state, null, 2)}
-      </code>
-    </pre>
-  </div>)
+      <h2>{t('phrase')}</h2>
+      <p>{t('label')}</p>
+      <div>
+        {
+          Object.keys(state.dict)
+            .map(langCode => (
+              <RadioButton
+                key={langCode}
+                checked={state.language === langCode}
+                name={state.dict[langCode].name}
+                fetched={Object.keys(state.dict[langCode]).length > 1}
+                lang={langCode}
+              />
+            ))
+        }
+      </div>
+      <p>{t('lyrics')}</p>
+      <pre>
+        <code>
+          {JSON.stringify(state, null, 2)}
+        </code>
+      </pre>
+    </div>)
 }
-app(state, actions, view, document.body)
+
+const getInitialState = () => getStateFromStorage() || InitialState
+
+app({
+  init: getInitialState(),
+  view: View,
+  node: document.querySelector('#app')
+})

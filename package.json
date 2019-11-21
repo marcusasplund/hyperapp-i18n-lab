@@ -8,21 +8,17 @@
     "url": "git+ssh://git@github.com/marcusasplund/hyperapp-i18n-lab.git"
   },
   "scripts": {
-    "start": "standard && parcel src/index.html -p 3000 --open",
-    "build": "standard && parcel build src/index.html -d build --public-url ./ && workbox generateSW"
+    "start": "standard && parcel src/index.html -p 3000 --open && cp src/no.json dist",
+    "build": "rm -rf release && standard && parcel build src/index.html -d build --public-url ./ && cp src/no.json build && workbox generateSW"
   },
   "version": "0.0.2",
   "author": "Marcus Asplund <marcus@greatname.se> (@marcusasplund)",
   "bugs": {
     "url": "https://github.com/marcusasplund/hyperapp-i18n-lab/issues"
   },
-  "devDependencies": {
-    "babel-eslint": "^10.0.0",
-    "workbox-build": "^4.0.0",
-    "workbox-cli": "^4.0.0",
-    "node-sass": "^4.9.3",
-    "parcel-bundler": "^1.9.7",
-    "standard": "*"
+  "cache": {
+    "inDev": true,
+    "swDest": "service-worker.js"
   },
   "standard": {
     "parser": "babel-eslint",
@@ -31,9 +27,17 @@
       "build/"
     ]
   },
+  "devDependencies": {
+    "@babel/core": "^7.6.2",
+    "babel-eslint": "^10.0.3",
+    "node-sass": "^4.9.3",
+    "parcel-bundler": "^1.12.3",
+    "parcel-plugin-sw-cache": "^0.3.1",
+    "standard": "*"
+  },
   "dependencies": {
-    "hyperapp": "^1.2.9",
-    "hyperapp-context": "^1.0.4",
-    "unfetch": "^4.0.1"
+    "@hyperapp/events": "^0.0.3",
+    "hyperapp": "^2.0.1",
+    "hyperapp-fx": "2.0.0-beta.1"
   }
 }
