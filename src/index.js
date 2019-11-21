@@ -39,7 +39,7 @@ const translate = (state, str) => state.dict[state.language][str] || str
 
 const AddLanguage = (state, response) => {
   console.log(response)
-  return state
+  return { ...state, ...{ dict: { ...state.dict, ...response } } }
 }
 //  dict: Object.assign({}, dict, { [key]: lang })
 
@@ -61,7 +61,7 @@ const ChangeLanguage = (state, value) => {
     storeStateInStorage(newState)
     return newState
   } else {
-    FetchLanguage(state, value)
+    return [FetchLanguage, value]
   }
 }
 
