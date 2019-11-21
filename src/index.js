@@ -17,7 +17,7 @@ const InitialState = {
       name: 'English',
       lyrics: `Round round get around, I get around, yeah
         (Get around round round I get around, ooh-ooh) I get around
-        Fom town to town (get around round round I get around)
+        From town to town (get around round round I get around)
         I'm a real cool head (get around round round I get around)
         I'm makin' real good bread (get around round round I get around)`
     },
@@ -25,11 +25,11 @@ const InitialState = {
       phrase: 'Je me déplace',
       label: 'Choisir la langue',
       name: 'Français',
-      lyrics: `Tour rond autour, je me déplace, oui
-        (Tourne autour de moi, je me déplace, ooh-ooh) Je me déplace
-        Fom ville à la ville (se déplacer autour de ronde je me déplace)
-        Je suis une vraie tête froide (contourne-toi autour de moi)
-        Je fais du bon pain (fais le tour du rond)`
+      lyrics: `Tout autour, je me déplace, oui
+         (Se déplacer tout autour je me déplace, ooh-ooh) je me déplace
+         De ville en ville (je me déplace)
+         Je suis une vraie tête froide (je tourne autour de moi)
+         Je fais du vrai bon pain (je me déplace)`
     }
   },
   language: 'en'
@@ -61,7 +61,7 @@ const ChangeLanguage = (state, value) => {
     storeStateInStorage(newState)
     return newState
   } else {
-    return FetchLanguage(state, value)
+    FetchLanguage(state, value)
   }
 }
 
