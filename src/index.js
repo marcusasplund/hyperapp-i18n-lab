@@ -26,10 +26,10 @@ const InitialState = {
       label: 'Choisir la langue',
       name: 'Français',
       lyrics: `Tout autour, je me déplace, oui
-         (Se déplacer tout autour je me déplace, ooh-ooh) je me déplace
-         De ville en ville (je me déplace)
-         Je suis une vraie tête froide (je tourne autour de moi)
-         Je fais du vrai bon pain (je me déplace)`
+        (Se déplacer tout autour je me déplace, ooh-ooh) je me déplace
+        De ville en ville (je me déplace)
+        Je suis une vraie tête froide (je tourne autour de moi)
+        Je fais du vrai bon pain (je me déplace)`
     }
   },
   language: 'en'
