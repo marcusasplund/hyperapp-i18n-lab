@@ -14,9 +14,6 @@
 
 Offline support with service worker
 
-TODO: ~~[a bug in parcel](https://github.com/parcel-bundler/parcel/issues/235) rewrites the manifest.json to a js file~~ so the pwa requirements fails. Also the meta tags and icons are rewritten https://github.com/parcel-bundler/parcel/issues/220
-To build a proper PWA you now have to manually copy the <meta> tags in the head from src/index.html, and also copy the icons with their proper names.
-
 ## installation
 
 ````bash

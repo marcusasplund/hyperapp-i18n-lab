@@ -8,8 +8,13 @@
     "url": "git+ssh://git@github.com/marcusasplund/hyperapp-i18n-lab.git"
   },
   "scripts": {
+<<<<<<< HEAD
     "start": "cp src/no.json dist && standard && parcel src/index.html -p 3000 --open",
     "build": "rm -rf release && standard && parcel build src/index.html -d build --public-url ./ && cp src/no.json build && workbox generateSW"
+=======
+    "start": "standard && parcel src/index.html -p 3000 --open && cp src/no.json dist",
+    "build": "rm -rf build && standard && parcel build src/index.html -d build --public-url ./ && cp src/no.json build"
+>>>>>>> a9672a4668f3dd0c8bc10863797a1cce568b6823
   },
   "version": "0.0.2",
   "author": "Marcus Asplund <marcus@greatname.se> (@marcusasplund)",
