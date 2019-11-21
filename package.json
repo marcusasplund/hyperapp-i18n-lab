@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "standard && parcel src/index.html -p 3000 --open && cp src/no.json dist",
-    "build": "rm -rf release && standard && parcel build src/index.html -d build --public-url ./ && cp src/no.json build"
+    "build": "rm -rf build && standard && parcel build src/index.html -d build --public-url ./ && cp src/no.json build"
   },
   "version": "0.0.2",
   "author": "Marcus Asplund <marcus@greatname.se> (@marcusasplund)",
